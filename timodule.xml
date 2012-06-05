@@ -7,11 +7,15 @@
 	<iphone>
 	</iphone>
 	<android xmlns:android="http://schemas.android.com/apk/res/android">
-		<service android:name="org.openudid.OpenUDID_service">
-			 <intent-filter>
-				<action android:name="org.openudid.GETUDID" />
-			</intent-filter>
-		</service>
+		<manifest>
+			<application>
+				<service android:name="org.OpenUDID.OpenUDID_service">
+					 <intent-filter>
+						<action android:name="org.OpenUDID.GETUDID" />
+					</intent-filter>
+				</service>
+			</application>
+		</manifest>		
 	</android>
 	<mobileweb>
 	</mobileweb>

@@ -9,11 +9,12 @@
 package net.iamyellow.TiOpenUDID;
 
 import org.appcelerator.kroll.KrollModule;
+
 import org.appcelerator.kroll.annotations.Kroll;
 
 import org.appcelerator.titanium.TiApplication;
-//import org.appcelerator.kroll.common.Log;
-//import org.appcelerator.kroll.common.TiConfig;
+import org.appcelerator.kroll.common.Log;
+import org.appcelerator.kroll.common.TiConfig;
 
 import org.OpenUDID.OpenUDID_manager;
 
@@ -38,14 +39,17 @@ public class TiopenudidModule extends KrollModule
 	@Kroll.onAppCreate
 	public static void onAppCreate(TiApplication app)
 	{
-		OpenUDID_manager.sync(app);
+		OpenUDID_manager.sync(app.getApplicationContext());
 	}
 
 	// Properties
 	@Kroll.getProperty
 	public String getUniqueID()
-	{
+	{		
 		if (openUDID == null) {
+			if (!OpenUDID_manager.isInitialized()) {
+				return null;
+			}
 			openUDID = OpenUDID_manager.getOpenUDID();
 		}
 		return openUDID;
